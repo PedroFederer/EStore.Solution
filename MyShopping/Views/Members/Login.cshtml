@@ -1,0 +1,59 @@
+﻿@model MyShopping.Models.ViewModels.LoginVm
+
+@{
+    ViewBag.Title = "登入";
+}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 d-none d-lg-block">
+            <img src="/images/remind.jpg" class="img-fluid" />
+            <br />
+            source : <a href="https://cart.books.com.tw/member/login">博客來</a>
+        </div>
+
+        <!-- 右側欄 begin -->
+        <div class="col-lg-3 col-md-8 border border-info rounded shadow-lg p-3 mb-5 bg-body">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>會員登入</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "form-label col-md-2" })
+
+                        @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label col-md-2" })
+
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="submit" value="登入" class="btn btn-success" style="width:100%" />
+
+                    </div>
+                    <div>
+                        <a href="/Members/ForgetPassword">忘記密碼</a> | 還不是會員? <a href="/Members/Register">加入會員</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <!-- 右側欄 end -->
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
