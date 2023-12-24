@@ -111,6 +111,12 @@ namespace MyShopping.Controllers
 
 			return Redirect(processResult.ReturnUrl);
 		}
+		public ActionResult Logout()
+		{
+			Session.Abandon();
+			FormsAuthentication.SignOut();
+			return Redirect("/Members/Login");
+		}
 		private void ValidLogin(LoginVm vm)
 		{
 			var db = new AppDbContext();
