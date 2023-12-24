@@ -60,5 +60,29 @@ namespace MyShopping.Controllers
 
 			// todo發出確認信
 		}
+		public ActionResult ActiveRegister(int memberId, string confirmCode)
+		{
+			if (memberId <= 0 || string.IsNullOrEmpty(confirmCode))
+			{
+				return View();
+			}
+
+			var db = new AppDbContext();
+
+			//根據memberId, confirmCode取得Member
+			var member = db.Members.FirstOrDefault(p => p.Id == memberId && p.ConfirmCode == confirmCode && p.IsConfirmed == false);
+
+			if (member == null)
+			{
+				return View();
+			}
+
+			//將它更新為已確認
+			member.IsConfirmed = true;
+			member.ConfirmCode = null;
+			db.SaveChanges();
+
+			return View();
+		}
 	}
 }
