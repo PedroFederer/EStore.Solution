@@ -1,40 +1,96 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .memberNav a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+
+            .memberNav a:hover {
+                text-decoration: underline;
+                font-size: 1.1em;
+            }
+    </style>
+    @RenderSection("css", required: false)
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <!--導覽列 begin-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <div class="container">
-            @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="切換導覽" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="/">好穿網</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("關於", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Products/Category/1">眼鏡</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Products/Category/2">鞋子</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            服飾
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/Products/Category/3">襯衫</a></li>
+                            <li><a class="dropdown-item" href="/Products/Category/4">褲子</a></li>
+                            <li><a class="dropdown-item" href="/Products/Category/5">裙子</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/Products/Category/16">童裝</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
+
+                <div class="memberNav">
+                    <a href="/Home/Contact" class="text-white">聯絡我們</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/Members/Index/" class="text-white">( @User.Identity.Name )</a>
+                        <a href="/Members/Logout/" class="text-white">登出</a>
+                        @*<a href="/ShoppingCart/index/" class="text-white" id="cartIcon">購物車( @( new CartRepository().GetCart().Items.Sum(x=>x.Qty) ) )</a>*@
+                    }
+                    else
+                    {
+                        <a href="/Members/register" class="text-white">註冊會員</a>
+                        <a href="/Members/Login/" class="text-white">登入</a>
+                    }
+
+
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
-        </footer>
-    </div>
+    <!--導覽列 end-->
+    <div>
+        <div class="m-3">
 
+            @RenderBody()
+
+            <div class="container body-content">
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - 好穿網</p>
+                </footer>
+            </div>
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="/js/globalFunctions.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

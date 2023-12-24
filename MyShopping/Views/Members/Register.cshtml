@@ -1,0 +1,172 @@
+﻿@model MyShopping.Models.ViewModels.RegisterVm
+@{
+    ViewBag.Title = "會員註冊";
+}
+
+<h3 class="addnew">會員註冊</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="bg">
+        <img src="~/Files/istockphoto-1421977709-1024x1024.jpg" />
+    </div>
+
+    <div class="container">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="mb-3">
+            @*@Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "form-label col-md-2" })*@
+
+            @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Account), id = "accountInput" } })
+            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger text-center" })
+            <span id="accountAvailability"></span>
+
+        </div>
+
+        <div class="mb-3">
+            @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label col-md-2" })*@
+
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Password) } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger text-center" })
+
+        </div>
+
+        <div class="mb-3">
+            @*@Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-label col-md-2" })*@
+
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.ConfirmPassword) } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger text-center" })
+
+        </div>
+
+        <div class="mb-3">
+
+            @*@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "form-label col-md-2" })*@
+
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Name) } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger text-center" })
+
+        </div>
+        <div class="mb-3">
+            @*@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "form-label col-md-2" })*@
+
+            @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Mobile) } })
+            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger text-center" })
+
+        </div>
+
+        <div class="mb-3">
+            @*@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label col-md-2" })*@
+
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Email) } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger text-center" })
+
+        </div>
+
+        <div class="text-center">
+
+            <input type="submit" value="註冊" class="btn btn-success rounded-pill" />
+
+        </div>
+    </div>
+}
+
+@*<div>
+    <!--@Html.ActionLink("Back to List", "Index")
+    </div>-->*@
+
+@section css{
+    <style>
+        #guide {
+            margin-top: 20px;
+            margin-left: 26%;
+        }
+
+        .btn {
+            height: 40px;
+            width: 100px
+        }
+
+        /*#name {
+            padding-bottom: 10px;
+            margin-left:33%
+        }*/
+
+        .addnew {
+            margin-top: 100px;
+            text-align: center;
+            font-family: 'Yu Gothic UI'
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+            .bg img {
+                min-height: 100%;
+                width: 100%;
+                opacity: 30%;
+            }
+
+        #footer {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            margin-top: 9%;
+            margin-left: 5%;
+        }
+
+        .mb-3 {
+            padding-bottom: 30px;
+            text-align: center;
+        }
+
+        .text-danger {
+            text-align: center
+        }
+        /*#danger{
+            text-align:center
+        }*/
+    </style>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#accountInput").keyup(function () {
+                var account = $("#accountInput").val();
+                $.ajax({
+                    url: "/Members/ValidateAccount",
+                    type: "POST",
+                    data: { account: account },
+                    success: function (result) {
+                        if (result==false) {
+                            $("#accountAvailability").text("此帳號已被註冊");
+                            $("#accountAvailability").css("color", "red");
+                        }
+                        else {
+                            $("#accountAvailability").text("此帳號可使用");
+                            $("#accountAvailability").css("color", "green");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
