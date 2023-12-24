@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "會員中心";
+}
+
+<div class="bg">
+    <img src="~/images/mediamodifier-kJXGTOY1wLQ-unsplash.jpg" />
+</div>
+
+<h2 class="greet">Hi, @(User.Identity.Name)！</h2>
+<br />
+
+
+<div class="list-group align-items-center">
+    <a href="/Members/EditProfile/" class="list-group-item list-group-item-action" style="width:50%">
+        修改個人資料
+    </a>
+    <a href="/Members/EditPassword/" class="list-group-item list-group-item-action" style="width:50%">修改密碼</a>
+    @*<a href="/Orders/GetOrdersForCurrentUser/" class="list-group-item list-group-item-action" style="width:50%">訂單查詢</a>*@
+
+
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@section css{
+    <style>
+        .list-group {
+            padding-top: 100px;
+            padding-bottom: 200px;
+            text-align: center;
+            font-family: 'Yu Gothic UI'
+        }
+
+        .greet {
+            margin-top: 100px;
+            text-align: center;
+            font-family: 'Yu Gothic UI'
+        }
+
+        .function {
+            text-align: center;
+            font-family: 'Yu Gothic UI'
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+            .bg img {
+                min-height: 100%;
+                width: 100%;
+                opacity: 30%;
+            }
+    </style>
+}
+

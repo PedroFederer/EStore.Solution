@@ -1,0 +1,128 @@
+﻿@model MyShopping.Models.ViewModels.EditProfileVm
+
+@{
+    ViewBag.Title = "修改個人資料";
+}
+
+<h2>EditProfile</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="bg">
+        <img src="~/images/mediamodifier-kJXGTOY1wLQ-unsplash.jpg" />
+    </div>
+
+    <div class="container">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="mb-3" id="firstname">
+
+
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Name) } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+
+
+            @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Mobile) } })
+            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="mb-3">
+
+
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control rounded-pill mx-auto", placeholder = Html.DisplayNameFor(m => m.Email) } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="text-center">
+
+            <input type="submit" value="確認更改" class="btn btn-success rounded-pil" />
+
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section css{
+    <style>
+        #guide {
+            margin-top: 20px;
+            margin-left: 26%;
+        }
+
+        .btn {
+            height: 40px;
+            width: 100px
+        }
+
+        /*#name {
+            padding-bottom: 10px;
+            margin-left:33%
+        }*/
+
+        .addnew {
+            margin-top: 100px;
+            text-align: center;
+            font-family: 'Yu Gothic UI'
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+            .bg img {
+                min-height: 100%;
+                width: 100%;
+                opacity: 30%;
+            }
+
+        #footer {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            margin-top: 9%;
+            margin-left: 5%;
+        }
+
+        .mb-3 {
+            padding-bottom: 30px;
+            text-align: center;
+        }
+
+        .text-danger {
+            text-align: center
+        }
+        /*#danger{
+            text-align:center
+        }*/
+        .container {
+            padding-bottom: 100px;
+        }
+
+        #firstname {
+            padding-top: 100px;
+        }
+    </style>
+}
+

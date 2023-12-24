@@ -40,3 +40,7 @@
 			add Views/Members/Index.cshtml（空白範本），填入二個超連結
 		修改web.config裡的defaulturl
 		add EditProfile action(Get,POST)
+
+[v]del Views/Home/About.cshtml,Views/Home/Contact.cshtml
+
+[v] modify_Layout.cshtml, add LOGO

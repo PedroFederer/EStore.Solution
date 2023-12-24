@@ -12,8 +12,13 @@ namespace MyShopping.Controllers
 {
     public class MembersController : Controller
     {
-        // GET: Members
-        public ActionResult Register()
+		// GET: Members
+		[Authorize]
+		public ActionResult Index()
+		{
+			return View();
+		}
+		public ActionResult Register()
         {
             return View();
         }
@@ -171,6 +176,69 @@ namespace MyShopping.Controllers
 			var url = FormsAuthentication.GetRedirectUrl(account, true); //第二個引數，沒有用處
 
 			return (url, cookie);
+		}
+
+		[Authorize]
+		public ActionResult EditProfile()
+		{
+			var currentUserAccount = User.Identity.Name;
+			var vm = GetMemberProfile(currentUserAccount);
+
+			return View(vm);
+		}
+
+		[Authorize]
+		[HttpPost]
+		public ActionResult EditProfile(EditProfileVm vm)
+		{
+			var currentUserAccount = User.Identity.Name;
+			if (!ModelState.IsValid)
+			{
+				return View(vm);
+			}
+			try
+			{
+				UpdateProfile(vm, currentUserAccount);
+			}
+			catch (Exception ex)
+			{
+				ModelState.AddModelError("", ex.Message);
+				return View(vm);
+			}
+			return RedirectToAction("Index"); //回到會員中心頁
+		}
+		private void UpdateProfile(EditProfileVm vm, string account)
+		{
+			//利用vm.Id去資料庫取得Member
+			var db = new AppDbContext();
+			var memberInDb = db.Members.FirstOrDefault(p => p.Id == vm.Id);
+
+			//如果這筆紀錄與目前使用者不符，就拒絕
+			if (memberInDb.Account != account)
+			{
+				throw new Exception("您沒有權限修改別人的資料");
+			}
+
+			memberInDb.Name = vm.Name;
+			memberInDb.Email = vm.Email;
+			memberInDb.Mobile = vm.Mobile;
+
+			db.SaveChanges();
+		}
+
+		private EditProfileVm GetMemberProfile(string account)
+		{
+			var db = new AppDbContext();
+
+			var member = db.Members.FirstOrDefault(p => p.Account == account);
+			if (member == null)
+			{
+				throw new Exception("帳號不存在");
+			}
+
+			var vm = member.ToEditProfileVm();
+
+			return vm;
 		}
 	}
 }
