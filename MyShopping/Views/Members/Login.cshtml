@@ -12,7 +12,7 @@
         </div>
 
         <!-- 右側欄 begin -->
-        <div class="col-lg-3 col-md-8 border border-info rounded shadow-lg p-3 mb-5 bg-body">
+        <div class="col-lg-3 col-md-8 border border-info rounded shadow-lg p-3 mb-5 bg-body ">
 
             @using (Html.BeginForm())
             {
@@ -56,4 +56,12 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section css{
+    <style>
+        body {
+            margin-top: 10rem !important
+        }
+    </style>
 }

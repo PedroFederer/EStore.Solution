@@ -44,3 +44,8 @@
 [v]del Views/Home/About.cshtml,Views/Home/Contact.cshtml
 
 [v] modify_Layout.cshtml, add LOGO
+
+[v]實作 變更密碼
+	add Models/ViewModels/EditPasswordVm.cs
+	modify MemberController
+		add EditPassword action(Get, POST)

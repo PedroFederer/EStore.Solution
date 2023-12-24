@@ -155,6 +155,7 @@
     <Compile Include="Models\EFModels\OrderItem.cs" />
     <Compile Include="Models\EFModels\Product.cs" />
     <Compile Include="Models\Infra\HashUtility.cs" />
+    <Compile Include="Models\ViewModels\EditPasswordVm.cs" />
     <Compile Include="Models\ViewModels\EditProfileVm.cs" />
     <Compile Include="Models\ViewModels\LoginVm.cs" />
     <Compile Include="Models\ViewModels\MemberExts.cs" />
@@ -185,7 +186,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\LOGO.png" />
-    <Content Include="images\mediamodifier-kJXGTOY1wLQ-unsplash.jpg" />
     <Content Include="images\remind.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -222,6 +222,7 @@
     <Content Include="Views\Members\Login.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\EditProfile.cshtml" />
+    <Content Include="Views\Members\EditPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

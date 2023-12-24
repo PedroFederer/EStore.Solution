@@ -240,5 +240,54 @@ namespace MyShopping.Controllers
 
 			return vm;
 		}
+		[Authorize]
+		public ActionResult EditPassword()
+		{
+			return View();
+		}
+		[Authorize]
+		[HttpPost]
+		public ActionResult EditPassword(EditPasswordVm vm)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(vm);
+			}
+			try
+			{
+				var currentAccount = User.Identity.Name;
+				ChangePassword(vm, currentAccount);
+			}
+			catch (Exception ex)
+			{
+				ModelState.AddModelError("", ex.Message);
+				return View(vm);
+			}
+			return RedirectToAction("Index");
+		}
+		private void ChangePassword(EditPasswordVm vm, string account)
+		{
+			var db = new AppDbContext();
+			var memberInDb = new AppDbContext().Members.FirstOrDefault(p => p.Account == account);
+			if (memberInDb == null)
+			{
+				throw new Exception("帳號不存在");
+			}
+			var salt = HashUtility.GetSalt();
+
+			//判斷書入的原始密碼是否正確
+			var hashedOrigPassword = HashUtility.ToSHA256(vm.OriginalPassword, salt);
+			if (string.Compare(memberInDb.EncryptedPassword, hashedOrigPassword, true) != 0)
+			{
+				throw new Exception("原始密碼不正確");
+			}
+
+			//將新密碼雜湊
+			var hashedPassword = HashUtility.ToSHA256(vm.Password, salt);
+
+			//更新紀錄
+			memberInDb.EncryptedPassword = hashedPassword;
+			db.SaveChanges();
+		}
 	}
 }
