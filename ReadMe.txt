@@ -10,3 +10,4 @@
 		add Views/Members/Register.cshtml,RegisterConfirm.cshtml
 		modify_Layout.cshtml, add ValidateAccount, add Register link
 [v] add RegisterConfirm.cshtml
+[v] add RegieterMember
