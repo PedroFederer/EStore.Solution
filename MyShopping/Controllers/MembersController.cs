@@ -19,7 +19,7 @@ namespace MyShopping.Controllers
         [HttpPost]
 		public ActionResult Register(RegisterVm vm)
 		{
-			return View();
+			return View("RegisterConfirm");
 		}
 		public ActionResult ValidateAccount(RegisterVm vm)
 		{
