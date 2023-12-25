@@ -1,0 +1,66 @@
+﻿@model MyShopping.Models.ViewModels.CheckoutVm
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Receiver, htmlAttributes: new { @class = "form-label col-md-2" })
+
+        @Html.EditorFor(model => model.Receiver, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Receiver, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "form-label col-md-2" })
+
+        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(model => model.CellPhone, htmlAttributes: new { @class = "form-label col-md-2" })
+
+        @Html.EditorFor(model => model.CellPhone, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.CellPhone, "", new { @class = "text-danger" })
+
+    </div>
+
+
+    @if (ViewBag.ErrorMessage == null)
+    {
+        <div class="mb-3">
+            <div class="text-end">
+                <input type="submit" value="送出訂單" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alet- alet-danger">@ViewBag.ErrorMessage</div>
+    }
+</div>
+}
+
+<div>
+    <a href="/">繼續購物</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

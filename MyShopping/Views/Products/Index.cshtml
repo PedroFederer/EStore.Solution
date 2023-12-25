@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+
+<br />
 <br />
 <br />
 <br />
@@ -37,11 +39,48 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <button class="add2cart" data-id="@item.Id">加入購物車</button>
+                    }
+                }
             </td>
+
         </tr>
     }
 
 </table>
+@section css{
+    <style>
+        .add2cart {
+            color: red;
+        }
+    </style>
+}
+
+
+@*定位用的，layout對應*@
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(".add2cart").each(function () {
+                $(this).on("click", function () {
+                    var self = $(this);
+
+                    var productId = self.attr("data-id");
+
+                    //ajax 送出request
+                    $.get("/Cart/AddItem?productId=" + productId,
+                        null,
+                        function (result) {
+                            alert("已加入購物車");
+                        });
+                });
+            });
+        })
+    </script>
+}

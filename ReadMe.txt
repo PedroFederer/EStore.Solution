@@ -55,3 +55,8 @@
 	add ProductsController(新增空白controller), add Index action
 		add Index.cshtml(list)
 		add Create.cshtml, Edit.cshtml, Delete.cshtml
+
+[V] 建立網站首頁
+	add Home/Index.cshtml
+
+[V] 調整Layout及新增購物車與結帳

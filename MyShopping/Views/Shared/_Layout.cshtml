@@ -6,15 +6,15 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @RenderSection("css", required: false)
     <style>
         #footer {
             margin-top: 10px;
             text-align: center;
         }
-        
     </style>
 
-    @RenderSection("css", required: false)
 </head>
 <body>
 
@@ -30,19 +30,23 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                @*<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
 
-                    <li class="nav-item">@Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>*@
+                    <li>@Html.ActionLink("所有商品", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul>
                     <div class="nav navbar-nav navbar-right">
                         @{
                             if (User.Identity.IsAuthenticated)
                             {
-                                @*<li><a href="/Members/Index/" class="nav-link">@(User.Identity.Name)</a></li>*@
+                            <li><a href="/Members/Index/" class="nav-link">@(User.Identity.Name)</a></li>
 
-                                @*<li class="nav-item navbar-right ">@Html.ActionLink("購物車", "ToCart", "Cart", new { area = "" }, new { @class = "nav-link" })</li>*@
+                            <li class="nav-item navbar-right ">@Html.ActionLink("購物車", "Info", "Cart", new { area = "" }, new { @class = "nav-link" })</li>
                             <li class="nav-item">@Html.ActionLink("會員中心", "Index", "Members", new { area = "" }, new { @class = "nav-link" })</li>
                             <li class="nav-item">@Html.ActionLink("登出會員", "Logout", "Members", new { area = "" }, new { @class = "nav-link" })</li>
 
@@ -53,26 +57,22 @@
                             <li class="nav-item">@Html.ActionLink("註冊新會員", "Register", "Members", new { area = "" }, new { @class = "nav-link" })</li>
                         }
                         }
+                    </ul>
                 </div>
-                </ul>
+
             </div>
-            </div>
+         
         </nav>
         <div class="container body-content">
             @RenderBody()
             <hr />
-            <div class="container">
-                <footer class="py-3 my-4">
-                    <!--<ul class="nav justify-content-center border-bottom pb-3 mb-3">-->
-                    @*<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>*@
-                    <!--</ul>-->
-                    <p class="text-center text-muted">© KLEIDUNG</p>
-                </footer>
-            </div>
+            <footer>
+                <p>&copy; @DateTime.Now.Year - >© KLEIDUNG</p>
+            </footer>
         </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
-    </body>
+</body>
 </html>
