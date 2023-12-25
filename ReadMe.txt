@@ -54,4 +54,4 @@
 	add ProductIndexVm.cs
 	add ProductsController(新增空白controller), add Index action
 		add Index.cshtml(list)
-		add Create.cshtml, Edit.cshtml, De
+		add Create.cshtml, Edit.cshtml, Delete.cshtml

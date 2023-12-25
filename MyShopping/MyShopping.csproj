@@ -192,7 +192,13 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\RegisterConfirm.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\benjamin-rascoe-Z3N7m_r02TA-unsplash.jpg" />
+    <Content Include="Files\bernard-hermant-PdTTy0XMQWA-unsplash.jpg" />
     <Content Include="Files\istockphoto-1421977709-1024x1024.jpg" />
+    <Content Include="Files\leo-rivas-wtxcaDIdOCM-unsplash.jpg" />
+    <Content Include="Files\parker-burchfield-tvG4WvjgsEY-unsplash.jpg" />
+    <Content Include="Files\pic-login.jpg" />
+    <Content Include="Files\waldemar-UP9DtTjRYpI-unsplash.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\LOGO.png" />
@@ -235,7 +241,6 @@
     <Content Include="Views\Members\EditPassword.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>

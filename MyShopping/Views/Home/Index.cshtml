@@ -1,33 +1,112 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<style>
+    .btncolor {
+        background-color: white;
+        border: 1px solid white;
+        border-color: white;
+    }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    .Homecolor {
+        border: 1px solid rgba(248, 249, 250);
+        border-color: rgba(248, 249, 250)
+    }
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+    .categorybtn {
+        background-color: rgb(217, 213, 213);
+        border: 1px solid rgb(217, 213, 213);
+        border-color: rgb(217, 213, 213);
+    }
+
+    .currentbtn {
+        background-color: rgb(11, 18, 28);
+        color: white;
+        border: 1px solid rgb(255, 255, 255);
+        border-color: rgb(255, 255, 255);
+    }
+</style>
+<body>
+    <!--商品模板-->
+    <template class="product_list">
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="item my-3 mx-1">
+                <a class="product" href="">
+                    <div class="card bg-light text-white">
+                        <img src="~/Files/leo-rivas-wtxcaDIdOCM-unsplash.jpg class="card-img photo w-100" alt="..."/>
+                        
+                        <div class="card-img-overlay">
+                            <h5 class="card-title name text-dark"></h5>
+                            <p class="card-text price text-dark"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </template>
+    <!--商品模板-->
+    <!--分類模板-->
+    <template class="Category_button">
+        <button class="btn mx-2 categorybtn category" gender="" categoryId=""></button>
+    </template>
+    <!--分類模板-->
+    <!--輪播頁-->
+    <div class="container mt-5 slide">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <button class="w-100 btncolor">
+                        <img src="~/Files/parker-burchfield-tvG4WvjgsEY-unsplash.jpg" class="d-block w-100  h-100" alt="...">
+
+                    </button>
+                </div>
+                <div class="carousel-item">
+                    <button class="w-100 btncolor">
+                        <img src="~/Files/waldemar-UP9DtTjRYpI-unsplash.jpg" class="d-block w-100" alt="...">
+                    </button>
+                </div>
+                <div class="carousel-item">
+                    <button class="w-100 btncolor">
+                        <img src="~/Files/bernard-hermant-PdTTy0XMQWA-unsplash.jpg" class="d-block w-100" alt="...">
+                    </button>
+                </div>
+                <div class="carousel-item">
+                    <button class="w-100 btncolor">
+                        <img src="~/Files/pic-login.jpg" class="d-block w-100" alt="...">
+                    </button>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+           
+            </button>
+        </div>
     </div>
-</main>
+    <!--輪播頁-->
+    <!--首頁-->
+    <div class="home">
+        <!--首頁文字-->
+        <div class="container my-5">
+            <div class="row">
+                <div class="item text-center">
+                    <h4>KLEIDUNG</h4>
+                    <p>Jeden Tag gibt's die M?glichkeit eines Wunders.</p>
+                </div>
+            </div>
+        </div>
+        <!--首頁文字-->
+
+</body>
+
+@section scripts{
+    <script src="~/Js/HomePage.js"></script>
+}
