@@ -60,3 +60,18 @@
 	add Home/Index.cshtml
 
 [V] 調整Layout及新增購物車與結帳
+	add CartVm.cs, CartItemVm, 顯示一筆購物車資料及其明細
+	add CartController, 實作將商品加入購物車的功能
+		AddItem action, 將商品加入購物車
+		Info action, 顯示購物車內容，此時還沒實作數量的增減功能
+
+	modify app_start/RouteConfig.cs, 預設為 Product/Index
+	modify _Layout.cshtml, 加入購物車的連結
+	modify CartController
+		add UpdateItem action
+	add Cart/ Info view page(用list範本, model是CartVm)
+	add enum OrderStatus
+	add CheckoutVm.cs
+	modify CartController, add Checkout action
+	add Checkout view page(用create範本, model是CheckoutVm)
+	add ConfirmCheckout view page(empty template)
