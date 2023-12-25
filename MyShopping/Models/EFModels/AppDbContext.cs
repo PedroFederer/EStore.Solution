@@ -63,5 +63,7 @@ namespace MyShopping.Models.EFModels
 				.WithRequired(e => e.Product)
 				.WillCascadeOnDelete(false);
 		}
-	}
+
+        public System.Data.Entity.DbSet<MyShopping.Models.ViewModels.ProductIndexVM> ProductIndexVMs { get; set; }
+    }
 }

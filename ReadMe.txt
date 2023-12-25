@@ -49,3 +49,9 @@
 	add Models/ViewModels/EditPasswordVm.cs
 	modify MemberController
 		add EditPassword action(Get, POST)
+
+[V] 建立商品頁
+	add ProductIndexVm.cs
+	add ProductsController(新增空白controller), add Index action
+		add Index.cshtml(list)
+		add Create.cshtml, Edit.cshtml, De
