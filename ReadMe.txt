@@ -75,3 +75,5 @@
 	modify CartController, add Checkout action
 	add Checkout view page(用create範本, model是CheckoutVm)
 	add ConfirmCheckout view page(empty template)
+
+[V] Order

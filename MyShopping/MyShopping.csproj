@@ -255,7 +255,6 @@
     <Content Include="Views\Cart\Info.cshtml" />
     <Content Include="Views\Cart\ConfirmCheckout.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
-    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
